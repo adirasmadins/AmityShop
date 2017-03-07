@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/shopClosedtv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:text="SORRY THE SHOP IS CLOSED AT THE MOMENT!" />
+
+    <TextView
+        android:id="@+id/shopClosedtv2"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopClosedtv1"
+        android:layout_marginBottom="5dp"
+        android:text="WE WILL NOTIFY YOU WHEN THE SHOP OPENS!" />
+
+    <TextView
+        android:id="@+id/shopClosedtv3"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopClosedtv2"
+        android:layout_marginBottom="10dp"
+        android:text="THANK YOU FOR SHOPPING WITH US!" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/exitApplication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopClosedtv3"
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="10dp"
+        card_view:cardBackgroundColor="#FFFFFF"
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:text="EXIT APPLICATION" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
