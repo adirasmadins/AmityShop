@@ -35,7 +35,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+/////FUCK THIS SHITBITCHHH
 
+
+    //FUCKK
+
+    ///////////////
     private static final String PULL_ALL_ITEMS = "http://frame.ueuo.com/midnightshop/pullFoodItems.php";
     private static final String SHOP_STATUS = "http://frame.ueuo.com/midnightshop/shopOpenOrNot.php";
     static String shopOpen;
