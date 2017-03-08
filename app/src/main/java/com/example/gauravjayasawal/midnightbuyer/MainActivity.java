@@ -20,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
@@ -29,6 +30,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gauravjayasawal.midnightbuyer.Adapters.MainpageAdapter;
 import com.example.gauravjayasawal.midnightbuyer.ExtraClasses.JSONParser;
 import com.example.gauravjayasawal.midnightbuyer.Fragment.MainFragment;
 
@@ -60,12 +62,13 @@ public class MainActivity extends AppCompatActivity {
     static TextView counter;
     TextView orderRecievedText;
     CardView cartImage;
+    SearchView searchView;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_paster);
+        setContentView(R.layout.idk_why);
 
         TextView noInternet = (TextView) findViewById(R.id.noInternet);
         TextView refresh = (TextView) findViewById(R.id.refresh);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 //        toolbar.setLogo(R.drawable.logowhite);
         TextView title = (TextView) toolbar.findViewById(R.id.toolbarCounterText);
         cartImage = (CardView) toolbar.findViewById(R.id.cardCart);
-
+        searchView=(SearchView)findViewById(R.id.searchView);
         SharedPreferences sharedpref;
         sharedpref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         final String cartCount = sharedpref.getString("cartCount", "0");
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         TextView title = (TextView) toolbar.findViewById(R.id.toolbarCounterText);
         title.setText(String.valueOf(a));
     }
+
 
     public class checkIfShopIsOpen extends AsyncTask<String, String, String> {
         @Override

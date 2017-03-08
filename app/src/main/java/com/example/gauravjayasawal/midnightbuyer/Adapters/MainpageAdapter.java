@@ -1,10 +1,12 @@
 package com.example.gauravjayasawal.midnightbuyer.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.example.gauravjayasawal.midnightbuyer.MainActivity;
 import com.example.gauravjayasawal.midnightbuyer.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,12 +32,15 @@ public class MainpageAdapter extends RecyclerView.Adapter<MainpageAdapter.MyView
 
     public static String sItemName;
     public static String sPrice;
-
+    List<InformationMainPage> filerlist;
     public MainpageAdapter(Context context, List<InformationMainPage> data) {
         Log.d("LOG", "" + context);
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.data = data;
+        this.filerlist = new ArrayList<InformationMainPage>();
+        this.filerlist.addAll(this.data);
+
     }
 
     @Override
@@ -48,8 +54,8 @@ public class MainpageAdapter extends RecyclerView.Adapter<MainpageAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final InformationMainPage current = data.get(position);
-        Log.d("asdfasdfasdf", "" + data.size());
+        final InformationMainPage current = filerlist.get(position);
+
         holder.tvNameOfItem.setText(current.infoNameOfItem);
         holder.tvPriceOfItem.setText(current.infoPriceOfItem);
         String a = current.infoNameOfItem.replaceAll("\\s", "");
@@ -117,9 +123,47 @@ public class MainpageAdapter extends RecyclerView.Adapter<MainpageAdapter.MyView
         });
     }
 
+    public void filter(final String text) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                filerlist.clear();
+                Log.d("ss", "ss" + text);
+
+                if (TextUtils.isEmpty(text)) {
+
+
+                    filerlist.addAll(data);
+
+
+                } else {
+                    for (InformationMainPage information : data) {
+
+                        if (information.infoNameOfItem.toLowerCase().contains(text.toLowerCase())) {
+
+                            filerlist.add(information);
+                        }
+                    }
+                }
+
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+
+
+        }).start();
+
+    }
+
+
     @Override
     public int getItemCount() {
-        return data.size();
+        return (null != filerlist ? filerlist.size() : 0);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

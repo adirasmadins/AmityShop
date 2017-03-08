@@ -4,8 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/searchView"
+        android:queryHint="Search Item"
+        >
 
+    </SearchView>
     <TextView
+
         android:id="@+id/suggestItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +23,9 @@
         android:layout_marginTop="10dp"
         android:clickable="true"
         android:text="Suggest an item for store"
-        android:textColor="#0000EE" />
+        android:textColor="#0000EE"
+        android:layout_below="@+id/searchView"
+        />
 
     <TextView
         android:layout_width="wrap_content"

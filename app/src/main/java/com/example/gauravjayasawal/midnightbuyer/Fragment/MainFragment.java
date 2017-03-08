@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment  implements SearchView.OnQueryTextListener{
 
     private static final String SUGGEST_NEW = "http://frame.ueuo.com/midnightshop/suggestNew.php";
     public static String strSuggestion;
@@ -40,18 +41,20 @@ public class MainFragment extends Fragment {
     TextView suggest;
     EditText suggestion;
     JSONParser jsonParser = new JSONParser();
-
+    MainpageAdapter adapter;
+    SearchView searchView;
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_recycler_layout, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.mainRecyclerView);
-        MainpageAdapter adapter = new MainpageAdapter(getActivity(), getdata());
+         adapter = new MainpageAdapter(getActivity(), getdata());
         Log.d("asdfasdfasdf", "" + adapter);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-
+        searchView =(SearchView)view.findViewById(R.id.searchView);
+        setUpSearchView();
 
         suggest = (TextView) view.findViewById(R.id.suggestItems);
         suggest.setOnClickListener(new View.OnClickListener() {
@@ -135,5 +138,23 @@ public class MainFragment extends Fragment {
             Toast.makeText(getActivity(), "Thank you for your suggestion.", Toast.LENGTH_SHORT).show();
         }
     }
+    public void setUpSearchView(){
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
+        searchView.setSubmitButtonEnabled(false);
 
+        searchView.setQueryHint("Search Here");
+
+    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        adapter.filter(newText);
+        return true;
+    }
 }
