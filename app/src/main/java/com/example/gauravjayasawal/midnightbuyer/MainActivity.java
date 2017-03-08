@@ -1,5 +1,7 @@
 package com.example.gauravjayasawal.midnightbuyer;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -7,6 +9,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -14,10 +17,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 /////FUCK THIS SHITBITCHHH
@@ -72,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         sharedpref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         final String cartCount = sharedpref.getString("cartCount", "0");
         title.setText(cartCount);
+
+
 
         boolean connected = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

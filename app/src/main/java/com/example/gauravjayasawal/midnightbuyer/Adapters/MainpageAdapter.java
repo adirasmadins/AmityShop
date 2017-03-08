@@ -54,7 +54,7 @@ public class MainpageAdapter extends RecyclerView.Adapter<MainpageAdapter.MyView
         holder.tvPriceOfItem.setText(current.infoPriceOfItem);
         String a = current.infoNameOfItem.replaceAll("\\s", "");
 
-        Picasso.with(context).load("http://aadeshrana.esy.es/" + a + current.infoPriceOfItem + ".jpg").fit().placeholder(R.drawable.noimageplaceholder).into(holder.imageMain);
+        Picasso.with(context).load("http://aadeshrana.esy.es/" + a + current.infoPriceOfItem + ".JPG").fit().placeholder(R.drawable.noimageplaceholder).into(holder.imageMain);
 
 
         if (current.infoAvailability.equals("0")) {
