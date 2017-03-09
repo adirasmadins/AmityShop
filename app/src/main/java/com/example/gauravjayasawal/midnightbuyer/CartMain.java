@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,14 +54,27 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
     String finalPrice[];
     private ProgressDialog pdialog;
 
+    String blockValidity = "0", floorValidity = "0", roomValidity = "0", numberValidity = "0", suiteValidity = "0";
+
     TextView checkOut;
     EditText name;
     EditText phoneNumber;
+    TextView phoneNumberValidationText;
+    ImageView phoneNumberValidationImage;
     EditText hostelBlock;
+    TextView hostelBlockValidationText;
+    ImageView hostelBlockValidationImage;
     EditText hostelFloor;
+    TextView hostelFloorValidationText;
+    ImageView hostelFloorValidationImage;
     EditText hostelSuite;
+    TextView hostelSuiteValidationText;
+    ImageView hostelSuiteValidationImage;
     EditText hostelRoom;
+    TextView hostelRoomValidationText;
+    ImageView hostelRoomValidationImage;
     CheckBox rememberDetails;
+    TextView allFieldsRequired;
 
     String sname;
     String sPhoneNumber;
@@ -119,6 +134,18 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
         hostelRoom = (EditText) dialog.findViewById(R.id.checkoutHostelAddressRoom);
         rememberDetails = (CheckBox) dialog.findViewById(R.id.rememberCheckBox);
 
+        allFieldsRequired = (TextView) dialog.findViewById(R.id.allFieldsRequired);
+        phoneNumberValidationText = (TextView) dialog.findViewById(R.id.phoneNumberValidation);
+        phoneNumberValidationImage = (ImageView) dialog.findViewById(R.id.phoneNumberValidationImage);
+        hostelBlockValidationText = (TextView) dialog.findViewById(R.id.blockValidation);
+        hostelBlockValidationImage = (ImageView) dialog.findViewById(R.id.hostelBlockValidationImage);
+        hostelFloorValidationText = (TextView) dialog.findViewById(R.id.floorValidation);
+        hostelFloorValidationImage = (ImageView) dialog.findViewById(R.id.hostelFloorValidationImage);
+        hostelSuiteValidationText = (TextView) dialog.findViewById(R.id.suiteValidation);
+        hostelSuiteValidationImage = (ImageView) dialog.findViewById(R.id.hostelSuiteValidationImage);
+        hostelRoomValidationText = (TextView) dialog.findViewById(R.id.roomValidation);
+        hostelRoomValidationImage = (ImageView) dialog.findViewById(R.id.hostelRoomValidationImage);
+
         SharedPreferences sharedpref;
         sharedpref = PreferenceManager.getDefaultSharedPreferences(CartMain.this);
 
@@ -133,6 +160,8 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
             hostelSuite.setText(sharedpref.getString("HostelSuite", ""));
             hostelRoom.setText(sharedpref.getString("HostelRoom", ""));
             rememberDetails.setVisibility(View.GONE);
+
+            validateFields();
         }
 
         name.addTextChangedListener(this);
@@ -147,39 +176,80 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sname = name.getText().toString();
-                sPhoneNumber = phoneNumber.getText().toString();
-                sHostelBlock = hostelBlock.getText().toString();
-                sHostelFloor = hostelFloor.getText().toString();
-                sHostelSuite = hostelSuite.getText().toString();
-                sHostelRoom = hostelRoom.getText().toString();
+                if (blockValidity.equals("1") && roomValidity.equals("1") && numberValidity.equals("1") && floorValidity.equals("1") && name.getText().toString().length() > 0 && suiteValidity.equals("1")) {
+                    sname = name.getText().toString();
+                    sPhoneNumber = phoneNumber.getText().toString();
+                    sHostelBlock = hostelBlock.getText().toString();
+                    sHostelFloor = hostelFloor.getText().toString();
+                    sHostelSuite = hostelSuite.getText().toString();
+                    sHostelRoom = hostelRoom.getText().toString();
 
-                if (rememberDetails.isChecked()) {
-                    ////// SHARED PREFERENCE MA STORE GARNE
+                    if (rememberDetails.isChecked()) {
+                        ////// SHARED PREFERENCE MA STORE GARNE
 
-                    SharedPreferences sharedpref;
-                    sharedpref = PreferenceManager.getDefaultSharedPreferences(CartMain.this);
-                    String cart = sharedpref.getString("cart", "");
-                    Log.d("Cart", "is1" + cart);
-                    SharedPreferences.Editor edit = sharedpref.edit();
-                    edit.clear();
-                    edit.putString("cart", cart);
-                    edit.putString("Name", sname);
-                    edit.putString("PhoneNumber", sPhoneNumber);
-                    edit.putString("HostelBlock", sHostelBlock);
-                    edit.putString("HostelFloor", sHostelFloor);
-                    edit.putString("HostelSuite", sHostelSuite);
-                    edit.putString("HostelRoom", sHostelRoom);
-                    edit.apply();
-                }
+                        SharedPreferences sharedpref;
+                        sharedpref = PreferenceManager.getDefaultSharedPreferences(CartMain.this);
+                        String cart = sharedpref.getString("cart", "");
+                        Log.d("Cart", "is1" + cart);
+                        SharedPreferences.Editor edit = sharedpref.edit();
+                        edit.clear();
+                        edit.putString("cart", cart);
+                        edit.putString("Name", sname);
+                        edit.putString("PhoneNumber", sPhoneNumber);
+                        edit.putString("HostelBlock", sHostelBlock);
+                        edit.putString("HostelFloor", sHostelFloor);
+                        edit.putString("HostelSuite", sHostelSuite);
+                        edit.putString("HostelRoom", sHostelRoom);
+                        edit.apply();
+                    }
 
 //                Make asyntask
-                new PlaceFinalOrder().execute();
+                    new PlaceFinalOrder().execute();
 
-                dialog.dismiss();
+                    dialog.dismiss();
+                } else {
+                    allFieldsRequired.setVisibility(View.VISIBLE);
+                }
             }
         });
 
+    }
+
+    private void validateFields() {
+        hostelBlockValidationText.setText("Valid Hostel Block");
+        hostelBlockValidationText.setTextColor(Color.parseColor("#67C100"));
+        hostelBlockValidationImage.setVisibility(View.VISIBLE);
+        blockValidity = "1";
+        hostelBlockValidationImage.setImageResource(R.drawable.tick_green);
+        hostelBlockValidationText.setVisibility(View.VISIBLE);
+
+        hostelFloorValidationText.setTextColor(Color.parseColor("#67C100"));
+        hostelFloorValidationText.setVisibility(View.VISIBLE);
+        hostelFloorValidationText.setText("Valid Floor");
+        floorValidity = "1";
+        hostelFloorValidationImage.setImageResource(R.drawable.tick_green);
+        hostelFloorValidationImage.setVisibility(View.VISIBLE);
+
+        hostelRoomValidationText.setTextColor(Color.parseColor("#67C100"));
+        hostelRoomValidationText.setVisibility(View.VISIBLE);
+        hostelRoomValidationText.setText("Valid Room");
+        roomValidity = "1";
+        hostelRoomValidationImage.setImageResource(R.drawable.tick_green);
+        hostelRoomValidationImage.setVisibility(View.VISIBLE);
+
+        phoneNumberValidationText.setText("Valid Format");
+        numberValidity = "1";
+        phoneNumberValidationText.setVisibility(View.VISIBLE);
+        phoneNumberValidationText.setTextColor(Color.parseColor("#67C100"));
+        phoneNumberValidationImage.setImageResource(R.drawable.tick_green);
+        phoneNumberValidationImage.setVisibility(View.VISIBLE);
+
+        hostelSuiteValidationText.setText("Valid Suite");
+        suiteValidity = "1";
+        hostelSuiteValidationText.setVisibility(View.VISIBLE);
+        hostelSuiteValidationText.setTextColor(Color.parseColor("#67C100"));
+        hostelSuiteValidationImage.setImageResource(R.drawable.tick_green);
+        hostelSuiteValidationImage.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -190,6 +260,150 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         rememberDetails.setVisibility(View.VISIBLE);
+        allFieldsRequired.setVisibility(View.INVISIBLE);
+        if (hostelBlock.getText().toString().length() > 0) {
+            if (hostelBlock.getText().toString().equals("B") | hostelBlock.getText().toString().equals("b") | hostelBlock.getText().toString().equals("b1") | hostelBlock.getText().toString().equals("a") | hostelBlock.getText().toString().equals("B1") | hostelBlock.getText().toString().equals("A")) {
+                hostelBlockValidationText.setText("Valid Hostel Block");
+                hostelBlockValidationText.setTextColor(Color.parseColor("#67C100"));
+                blockValidity = "1";
+                hostelBlockValidationImage.setVisibility(View.VISIBLE);
+                hostelBlockValidationImage.setImageResource(R.drawable.tick_green);
+                hostelBlockValidationText.setVisibility(View.VISIBLE);
+            } else {
+                if (hostelBlock.getText().toString().equals("D") | hostelBlock.getText().toString().equals("d") | hostelBlock.getText().toString().equals("d1") | hostelBlock.getText().toString().equals("D1") | hostelBlock.getText().toString().equals("C") | hostelBlock.getText().toString().equals("c") | hostelBlock.getText().toString().equals("E") | hostelBlock.getText().toString().equals("e") | hostelBlock.getText().toString().equals("E1") | hostelBlock.getText().toString().equals("F") | hostelBlock.getText().toString().equals("e1") | hostelBlock.getText().toString().equals("f")) {
+                    hostelBlockValidationText.setTextColor(Color.parseColor("#D72828"));
+                    hostelBlockValidationText.setText("Sorry! Hostel Block Not Supported Yet");
+                    hostelBlockValidationText.setVisibility(View.VISIBLE);
+                    blockValidity = "0";
+                    hostelBlockValidationImage.setImageResource(R.drawable.errorpass);
+                    hostelBlockValidationText.setVisibility(View.VISIBLE);
+                } else {
+                    hostelBlockValidationText.setText("Invalid Hostel Block");
+                    hostelBlockValidationText.setTextColor(Color.parseColor("#D72828"));
+                    hostelBlockValidationText.setVisibility(View.VISIBLE);
+                    blockValidity = "0";
+                    hostelBlockValidationImage.setVisibility(View.VISIBLE);
+                    hostelBlockValidationImage.setImageResource(R.drawable.errorpass);
+                }
+            }
+        } else {
+            hostelBlockValidationImage.setVisibility(View.INVISIBLE);
+            blockValidity = "0";
+            hostelBlockValidationText.setVisibility(View.INVISIBLE);
+        }
+        if (hostelFloor.getText().toString().length() > 0) {
+            if (hostelFloor.getText().toString().equals("1") | hostelFloor.getText().toString().equals("2") | hostelFloor.getText().toString().equals("3") | hostelFloor.getText().toString().equals("4") | hostelFloor.getText().toString().equals("5")) {
+                hostelFloorValidationText.setTextColor(Color.parseColor("#67C100"));
+                hostelFloorValidationText.setVisibility(View.VISIBLE);
+                hostelFloorValidationText.setText("Valid Floor");
+                floorValidity = "1";
+                hostelFloorValidationImage.setImageResource(R.drawable.tick_green);
+                hostelFloorValidationImage.setVisibility(View.VISIBLE);
+            } else {
+                hostelFloorValidationText.setTextColor(Color.parseColor("#D72828"));
+                hostelFloorValidationText.setVisibility(View.VISIBLE);
+                hostelFloorValidationText.setText("Invalid Floor");
+                floorValidity = "0";
+                hostelFloorValidationImage.setImageResource(R.drawable.errorpass);
+                hostelFloorValidationImage.setVisibility(View.VISIBLE);
+            }
+        } else {
+            floorValidity = "0";
+            hostelFloorValidationText.setVisibility(View.INVISIBLE);
+            hostelFloorValidationImage.setVisibility(View.INVISIBLE);
+        }
+        if (hostelRoom.getText().toString().length() > 0) {
+            if (hostelRoom.getText().toString().equals("1") | hostelRoom.getText().toString().equals("2") | hostelRoom.getText().toString().equals("3")) {
+                hostelRoomValidationText.setTextColor(Color.parseColor("#67C100"));
+                hostelRoomValidationText.setVisibility(View.VISIBLE);
+                hostelRoomValidationText.setText("Valid Room");
+                roomValidity = "1";
+                hostelRoomValidationImage.setImageResource(R.drawable.tick_green);
+                hostelRoomValidationImage.setVisibility(View.VISIBLE);
+            } else {
+                hostelRoomValidationText.setTextColor(Color.parseColor("#D72828"));
+                hostelRoomValidationText.setVisibility(View.VISIBLE);
+                hostelRoomValidationText.setText("Invalid Room");
+                roomValidity = "0";
+                hostelRoomValidationImage.setImageResource(R.drawable.errorpass);
+                hostelRoomValidationImage.setVisibility(View.VISIBLE);
+            }
+        } else {
+            hostelRoomValidationText.setVisibility(View.INVISIBLE);
+            hostelRoomValidationImage.setVisibility(View.INVISIBLE);
+            roomValidity = "0";
+        }
+
+        if (phoneNumber.getText().toString().length() > 0) {
+            if (phoneNumber.getText().toString().length() > 10) {
+                phoneNumberValidationText.setText("10 digit number only");
+                phoneNumberValidationText.setVisibility(View.VISIBLE);
+                phoneNumberValidationText.setTextColor(Color.parseColor("#D72828"));
+                numberValidity = "0";
+                phoneNumberValidationImage.setImageResource(R.drawable.errorpass);
+                phoneNumberValidationImage.setVisibility(View.VISIBLE);
+            } else {
+                if (phoneNumber.getText().toString().matches("^[0-9]*$")) {
+                    if (phoneNumber.getText().toString().length() < 10) {
+                        phoneNumberValidationText.setText("Too short");
+                        phoneNumberValidationText.setVisibility(View.VISIBLE);
+                        numberValidity = "0";
+                        phoneNumberValidationText.setTextColor(Color.parseColor("#D72828"));
+                        phoneNumberValidationImage.setImageResource(R.drawable.errorpass);
+                        phoneNumberValidationImage.setVisibility(View.VISIBLE);
+                    } else {
+                        phoneNumberValidationText.setText("Valid Format");
+                        phoneNumberValidationText.setVisibility(View.VISIBLE);
+                        phoneNumberValidationText.setTextColor(Color.parseColor("#67C100"));
+                        numberValidity = "1";
+                        phoneNumberValidationImage.setImageResource(R.drawable.tick_green);
+                        phoneNumberValidationImage.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    phoneNumberValidationText.setText("10 digit number only");
+                    phoneNumberValidationText.setVisibility(View.VISIBLE);
+                    phoneNumberValidationText.setTextColor(Color.parseColor("#D72828"));
+                    numberValidity = "0";
+                    phoneNumberValidationImage.setImageResource(R.drawable.errorpass);
+                    phoneNumberValidationImage.setVisibility(View.VISIBLE);
+                }
+            }
+        } else {
+            numberValidity = "0";
+            phoneNumberValidationText.setVisibility(View.INVISIBLE);
+            phoneNumberValidationImage.setVisibility(View.INVISIBLE);
+        }
+        if (hostelSuite.getText().toString().length() > 0) {
+            if (hostelSuite.getText().toString().matches("^[0-9]*$")) {
+                if (Integer.parseInt(hostelSuite.getText().toString()) < 14) {
+                    hostelSuiteValidationText.setText("Valid Suite");
+                    hostelSuiteValidationText.setVisibility(View.VISIBLE);
+                    hostelSuiteValidationText.setTextColor(Color.parseColor("#67C100"));
+                    suiteValidity = "1";
+                    hostelSuiteValidationImage.setImageResource(R.drawable.tick_green);
+                    hostelSuiteValidationImage.setVisibility(View.VISIBLE);
+                } else {
+                    hostelSuiteValidationText.setText("Invalid Suite");
+                    hostelSuiteValidationText.setVisibility(View.VISIBLE);
+                    hostelSuiteValidationText.setTextColor(Color.parseColor("#D72828"));
+                    suiteValidity = "0";
+                    hostelSuiteValidationImage.setImageResource(R.drawable.errorpass);
+                    hostelSuiteValidationImage.setVisibility(View.VISIBLE);
+                }
+            } else {
+                hostelSuiteValidationText.setText("Invalid Format");
+                hostelSuiteValidationText.setVisibility(View.VISIBLE);
+                hostelSuiteValidationText.setTextColor(Color.parseColor("#D72828"));
+                suiteValidity = "0";
+                hostelSuiteValidationImage.setImageResource(R.drawable.errorpass);
+                hostelSuiteValidationImage.setVisibility(View.VISIBLE);
+            }
+        } else {
+            suiteValidity = "0";
+            hostelSuiteValidationText.setVisibility(View.INVISIBLE);
+            hostelSuiteValidationImage.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override
@@ -225,7 +439,7 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
                     quantity[i - 1] = b[0];
                     finalPrice[i - 1] = String.valueOf(Integer.parseInt(b[2]) * Integer.parseInt(b[0]));
                 }
-                Log.d("Cart TOTALGG","c " +item.length);
+                Log.d("Cart TOTALGG", "c " + item.length);
                 countTotal = String.valueOf(item.length);
 
                 for (int i = 0; i < item.length; i++) {
@@ -289,7 +503,7 @@ public class CartMain extends AppCompatActivity implements TextWatcher {
         @Override
         protected String doInBackground(String... params) {
 
-            Log.d("Cart TOTALGG","c 2" +countTotal);
+            Log.d("Cart TOTALGG", "c 2" + countTotal);
 
             params1.add(new BasicNameValuePair("user", "shopAdmin"));
             params1.add(new BasicNameValuePair("message", "NEW ORDER OF " + countTotal + " ITEMS"));

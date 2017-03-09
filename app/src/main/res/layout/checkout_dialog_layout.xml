@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:textSize="16sp"
                 android:text="Please Enter Details"
                 android:textColor="@android:color/black" />
         </RelativeLayout>
@@ -47,6 +48,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Please enter all information correctly."
+                android:textSize="10sp"
+                android:id="@+id/allFieldsRequired"
+                android:visibility="invisible"
+                android:textColor="#D72828"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
             <android.support.v7.widget.CardView
                 android:id="@+id/checkoutNameTvCard"
                 android:layout_width="match_parent"
@@ -90,19 +101,48 @@
                         android:layout_below="@id/checkoutNameTv"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Phone Number: "
                         android:textColor="@android:color/black" />
 
                     <EditText
                         android:id="@+id/checkOutPhoneNumber"
                         android:layout_width="match_parent"
+                        android:inputType="phone"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/checkoutNameTv"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@id/checkoutPhoneNumberTv"
-                        android:hint="9987428434"
+                        android:hint="10 digit phone number"
+                        android:layout_toEndOf="@id/checkoutPhoneNumberTv"
                         android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/checkoutNameTv"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:visibility="invisible"
+                        android:id="@+id/phoneNumberValidation"
+                        android:text="Valid Hostel Block"
+                        android:textSize="10sp"
+                        />
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/phoneNumberValidationImage"
+                        android:src="@drawable/tick_green"
+                        android:layout_height="13dp"
+                        android:layout_toStartOf="@id/phoneNumberValidation"
+                        android:layout_toLeftOf="@id/phoneNumberValidation"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/checkoutNameTv"/>
+
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
@@ -154,6 +194,28 @@
                         android:layout_toRightOf="@id/hostelBlockTv"
                         android:hint="B1"
                         android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/checkoutHostelAddressTv"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/blockValidation"
+                        android:text="Valid Hostel Block"
+                        android:textSize="10sp"
+                        />
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:id="@+id/hostelBlockValidationImage"
+                        android:src="@drawable/tick_green"
+                        android:layout_height="13dp"
+                        android:visibility="invisible"
+                        android:layout_toLeftOf="@id/blockValidation"
+                        android:layout_marginRight="2dp"
+                        android:layout_below="@id/checkoutHostelAddressTv"/>
+
+
 
                     <TextView
                         android:id="@+id/hostelFloorTv"
@@ -162,7 +224,7 @@
                         android:layout_below="@id/hostelBlockTv"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Floor: "
                         android:textColor="@android:color/black" />
 
@@ -173,9 +235,33 @@
                         android:layout_below="@id/hostelBlockTv"
                         android:layout_marginLeft="5dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@id/hostelFloorTv"
                         android:hint="3"
                         android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hostelBlockTv"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:visibility="invisible"
+                        android:id="@+id/floorValidation"
+                        android:text="Valid Hostel Block"
+                        android:textSize="10sp"
+                        />
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/hostelFloorValidationImage"
+                        android:src="@drawable/tick_green"
+                        android:layout_height="13dp"
+                        android:layout_toLeftOf="@id/floorValidation"
+                        android:layout_marginRight="2dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/hostelBlockTv"/>
+
 
                     <TextView
                         android:id="@+id/hostelSuiteTv"
@@ -184,7 +270,7 @@
                         android:layout_below="@id/hostelFloorTv"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Suite: "
                         android:textColor="@android:color/black" />
 
@@ -195,11 +281,34 @@
                         android:layout_below="@id/hostelFloorTv"
                         android:layout_marginLeft="5dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@id/hostelSuiteTv"
+                        android:layout_toEndOf="@id/hostelSuiteTv"
                         android:hint="5"
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hostelFloorTv"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:visibility="invisible"
+                        android:id="@+id/suiteValidation"
+                        android:text="Valid Hostel Block"
+                        android:textSize="10sp"
+                        />
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/hostelSuiteValidationImage"
+                        android:src="@drawable/tick_green"
+                        android:layout_height="13dp"
+                        android:layout_toLeftOf="@id/suiteValidation"
+                        android:layout_marginRight="2dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/hostelFloorTv"/>
                     <TextView
                         android:id="@+id/hostelRoomTv"
                         android:layout_width="wrap_content"
@@ -207,7 +316,7 @@
                         android:layout_below="@id/hostelSuiteTv"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Room No: "
 
                         android:textColor="@android:color/black" />
@@ -219,9 +328,35 @@
                         android:layout_below="@id/hostelSuiteTv"
                         android:layout_marginLeft="5dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_toRightOf="@id/hostelRoomTv"
+                        android:layout_toEndOf="@id/hostelRoomTv"
                         android:hint="3"
                         android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hostelSuiteTv"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:visibility="invisible"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/roomValidation"
+                        android:text="Valid Hostel Block"
+                        android:textSize="10sp"
+                        />
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:id="@+id/hostelRoomValidationImage"
+                        android:src="@drawable/tick_green"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="13dp"
+                        android:layout_toLeftOf="@id/roomValidation"
+                        android:layout_toStartOf="@id/roomValidation"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:visibility="invisible"
+                        android:layout_below="@id/hostelSuiteTv"/>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
         </RelativeLayout>
