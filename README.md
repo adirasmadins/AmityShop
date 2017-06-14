@@ -4,7 +4,6 @@ This is the Amity Shop application. This readme contains information about the a
 **Demo**
 
 ![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
-
 **Sample Code**
 ```Java
 package sajha.com.sajha;
