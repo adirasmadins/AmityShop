@@ -4,7 +4,9 @@ This is the Amity Shop application. This readme contains information about the a
 **Demo**
 
 ![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
+
 **Sample Code**
+
 ```Java
 package sajha.com.sajha;
 
@@ -40,12 +42,8 @@ public class Form1 extends Fragment implements Step {
 https://github.com/jgaurav6/AmityShop.git
 
 ***Download apk file***
-https://github.com/jgaurav6/AmityShop/raw/master/app-debug.apk
 
-   First Header | Second Header
------------- | -------------
-itemr1c1 | itemr1c2
-itemr2c1 | itemr2c2
+https://github.com/jgaurav6/AmityShop/raw/master/app-debug.apk
 
 **Services**
 
