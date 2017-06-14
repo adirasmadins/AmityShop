@@ -1,5 +1,5 @@
 # Amity Shop
-This is the Amity Shop application. This readme contains information about the application and its features
+This is the Amity Shop application. This readme contains information about the application and its features.
 
 **Demo**
 
