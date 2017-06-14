@@ -1,4 +1,4 @@
-
+**Sample Code**
 ```Java
 package sajha.com.sajha;
 
@@ -28,6 +28,14 @@ public class Form1 extends Fragment implements Step {
     }
 }
 ```
+
 ***Italic*** 
 
-![picture] [http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg]
+[picture](http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg)
+
+https://guides.github.com/features/mastering-markdown/
+
+   First Header | Second Header
+------------ | -------------
+itemr1c1 | itemr1c2
+itemr2c1 | itemr2c2
