@@ -36,9 +36,12 @@ public class Form1 extends Fragment implements Step {
 }
 ```
 
-***Link for clone/download*** 
+***Download/Clone Project*** 
 
 https://github.com/jgaurav6/AmityShop.git
+
+***Download apk file***
+https://github.com/jgaurav6/AmityShop/raw/master/app-debug.apk
 
    First Header | Second Header
 ------------ | -------------
