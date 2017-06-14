@@ -1,6 +1,3 @@
-# listpractice
-This is the Amity department Store application. It could not be launched due to college policies against student businesses but it is complete and runs flawlessly.
-This project was done by Aadesh Rana and Gaurav Jayasawal from Amity University Haryana.
 
 ```Java
 package sajha.com.sajha;
@@ -32,3 +29,5 @@ public class Form1 extends Fragment implements Step {
 }
 ```
 ***Italic*** 
+
+![picture] [http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg]
