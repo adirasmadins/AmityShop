@@ -1,3 +1,10 @@
+# Amity Shop
+This is the Amity Shop application. This readme contains information about the application and its features
+
+**Demo**
+
+![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
+
 **Sample Code**
 ```Java
 package sajha.com.sajha;
@@ -29,21 +36,17 @@ public class Form1 extends Fragment implements Step {
 }
 ```
 
-***Italic*** 
+***Link for clone/download*** 
 
-![picture](http://i1.kym-cdn.com/entries/icons/facebook/000/007/217/Potatoe.jpg)
-
-https://guides.github.com/features/mastering-markdown/
+https://github.com/jgaurav6/AmityShop.git
 
    First Header | Second Header
 ------------ | -------------
 itemr1c1 | itemr1c2
 itemr2c1 | itemr2c2
 
-~~This is deprecated~~
+**Services**
 
-1. Item 1
-1. Item 2
-1. Item 3
-   1. Item 3a
-   1. Item 3b
+- [x] Buying from Shop 
+- [x] Requesting new Items to be kept on shop
+- [ ] Selling own items
