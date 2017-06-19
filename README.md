@@ -3,10 +3,9 @@ This is the Amity Shop application. This readme contains information about the a
 
 **Demo**
 
-![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png =100x20)
-![Buy Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img1.png =100x20)
-![Checkout Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img4.png =100x20)
-
+![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
+![Buy Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img1.png)
+<img src="https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img4.png" alt="Drawing" style="width: 200px;"/>
 **Sample Code**
 
 ```Java
