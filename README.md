@@ -1,7 +1,7 @@
 # Amity Shop
 This is the Amity Shop application. This readme contains information about the application and its features.
 
-**Demo**
+**Application Screenshots**
 
 <img src="https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png" width="330" height="550">
 <img src="https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img1.png" width="330" height="550">
