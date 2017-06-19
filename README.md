@@ -4,6 +4,8 @@ This is the Amity Shop application. This readme contains information about the a
 **Demo**
 
 ![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
+![Buy Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img1.png)
+![Checkout Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img4.png)
 
 **Sample Code**
 
