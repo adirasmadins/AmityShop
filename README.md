@@ -5,7 +5,7 @@ This is the Amity Shop application. This readme contains information about the a
 
 ![First Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/firstpage.png)
 ![Buy Page](https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img1.png)
-<img src="https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img4.png" width="200" height="200">
+<img src="https://github.com/jgaurav6/AmityShop/blob/master/app/src/main/res/drawable/img4.png" width="250" height="600">
 **Sample Code**
 
 ```Java
